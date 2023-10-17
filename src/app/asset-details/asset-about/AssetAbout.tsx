@@ -6,12 +6,12 @@ interface Props {
     // Define props here
 }
 
-const AssetSummary: React.FC<Props> = (props) => {
+const AssetAbout: React.FC<Props> = (props) => {
     // Component logic here
 
     return (
-        <div className={`${assetDetailsContainerClass}`}>Asset Summary Container</div>
+        <div className={`${assetDetailsContainerClass}`}>Asset About Container</div>
     );
 };
 
-export default AssetSummary;
+export default AssetAbout;
