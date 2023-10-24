@@ -1,9 +1,47 @@
-// Seed data for Asset Details
+export interface TopBarDataType {
+    assetId: number;
+    assetName: string;
+    assetSymbol: string;
+    assetLogo: string;
+    marketCap: number;
+    volume: number;
+    volPerMarketCap: number;
+    AllTimeHigh: number;
+    currentPrice: CurrentPriceType;
+}
 
-export const seedTopBarData = {
+export interface Changes {
+    name: string;
+    priceChange: number;
+}
+
+export interface Supply {
+    name: string;
+    value: number;
+}
+
+export interface CurrentPriceType {
+    usd: number;
+    btc: number;
+}
+
+export interface AssetSummaryType {
+    assetId: number;
+    assetName: string;
+    assetSymbol: string;
+    assetLogo: string;
+    usd: Changes[];
+    btc: Changes[];
+    eth: Changes[];
+    supply: Supply[];
+    range: Supply[];
+    movement: Supply[];
+}
+
+export const seedTopBarData: TopBarDataType = {
     assetId: 1,
-    assetName: "ethereum",
-    assetSymbol: "eth",
+    assetName: "Ethereum",
+    assetSymbol: "ETH",
     assetLogo: "https://images.rawpixel.com/image_png_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zNzNiYXRjaDE2LTAyLnBuZw.png",
     currentPrice: {
         usd:26765.5,
@@ -15,9 +53,8 @@ export const seedTopBarData = {
         AllTimeHigh: 4861.29,
     }
 
-    // Summary Table
-export const seedAssetSummary =  [
-    //
+  
+export const seedAssetSummary: AssetSummaryType[] =  [
         {
             assetId: 1,
             assetName: "ethereum",
@@ -120,6 +157,13 @@ export const seedAssetSummary =  [
             }
         ]
     },
-    //
 ]
 
+export const seedAssetAbout: string[] =  [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\
+    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\
+    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure\
+    dolor in repreh enderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\
+    Excepteur sint occae cat cupidatat non proident, sunt in culpa qui officia deserunt\
+    mollit anim id est laborum."
+]

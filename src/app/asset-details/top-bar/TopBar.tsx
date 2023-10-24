@@ -1,32 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { assetDetailsContainerClass } from "@/app/utils/styling/tempTWStyles";
-import { seedTopBarData } from "@/app/utils/seed-data/seed-asset-details";
-import { FaEthereum } from "react-icons/fa";
-
-interface TopBarDataType {
-    assetId: number;
-    assetName: string;
-    assetSymbol: string;
-    assetLogo: string;
-    marketCap: number;
-    volume: number;
-    volPerMarketCap: number;
-    AllTimeHigh: number;
-    currentPrice: CurrentPriceType;
-}
-
-interface CurrentPriceType {
-    usd: number;
-    btc: number;
-}
+import { seedTopBarData, TopBarDataType } from "@/app/utils/seed-data/seed-asset-details";
 
 interface Props {
     topBarData?: TopBarDataType;
 }
-
 const TopBar: React.FC<Props> = ({ topBarData = seedTopBarData }) => {
-    // Component logic here
 
     const [initialTopBarData, setTopBarData] =
         useState<TopBarDataType>(topBarData);

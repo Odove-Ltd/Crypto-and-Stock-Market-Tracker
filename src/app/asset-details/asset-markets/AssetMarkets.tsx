@@ -10,7 +10,7 @@ const AssetMarkets: React.FC<Props> = (props) => {
     // Component logic here
 
     return (
-        <div className={`${assetDetailsContainerClass}`}>Asset News Container</div>
+        <div className={`${assetDetailsContainerClass}`}>Asset Markets Container</div>
     );
 };
 
