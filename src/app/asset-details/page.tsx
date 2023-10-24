@@ -9,10 +9,11 @@ import {seedTopBarData, seedAssetAbout, TopBarDataType} from "@/app/utils/seed-d
 
 
 interface Props {
-    // Define props here
+    topBarData: TopBarDataType;
+    assetAbout: string;
 }
 
-const AssetDetails: React.FC<Props> = (props) => {
+const AssetDetails: React.FC<Props> = () => {
     // Component logic here
 
     return (
@@ -22,7 +23,7 @@ const AssetDetails: React.FC<Props> = (props) => {
             <AssetChart />
             <AssetMarkets />
             <AssetAbout topBarData={seedTopBarData} assetAbout={seedAssetAbout} />
-            <AssetNews />
+            <AssetNews topBarData = {seedTopBarData}/>
         </div>
     );
 };
