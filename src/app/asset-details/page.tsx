@@ -8,8 +8,8 @@ import AssetNews from './asset-news/AssetNews';
 import {seedTopBarData, seedAssetAbout, TopBarDataType} from "@/app/utils/seed-data/seed-asset-details";
 
 interface Props {
-    seedTopBarData: TopBarDataType;
-    seedAssetAbout: string[];
+    topBarData: TopBarDataType;
+    assetAbout: string[];
 }
 
 const AssetDetails: React.FC<Props> = () => {
