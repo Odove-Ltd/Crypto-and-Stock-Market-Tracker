@@ -8,15 +8,15 @@ import AssetNews from './asset-news/AssetNews';
 import {seedTopBarData, seedAssetAbout, TopBarDataType} from "@/app/utils/seed-data/seed-asset-details";
 
 interface Props {
-    topBarData: TopBarDataType;
-    assetAbout: string[];
+    seedTopBarData: TopBarDataType;
+    seedAssetAbout: string[];
 }
 
-const AssetDetails: React.FC<Props> = () => {
+const AssetDetails: React.FC<Props> = ({ seedTopBarData, seedAssetAbout }) => {
 
     return (
         <div className="flex flex-col px-20">
-            <TopBar />
+            <TopBar topBarData={seedTopBarData}/>
             <AssetSummary />
             <AssetChart />
             <AssetMarkets />
