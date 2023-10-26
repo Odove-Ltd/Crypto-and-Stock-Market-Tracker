@@ -5,12 +5,15 @@ import AssetChart from './asset-chart/AssetChart';
 import AssetMarkets from './asset-markets/AssetMarkets';
 import AssetAbout from './asset-about/AssetAbout';
 import AssetNews from './asset-news/AssetNews';
+import {seedTopBarData, seedAssetAbout, TopBarDataType} from "@/app/utils/seed-data/seed-asset-details";
+
 
 interface Props {
-    // Define props here
+    topBarData: TopBarDataType;
+    assetAbout: string;
 }
 
-const AssetDetails: React.FC<Props> = (props) => {
+const AssetDetails: React.FC<Props> = () => {
     // Component logic here
 
     return (
@@ -19,8 +22,8 @@ const AssetDetails: React.FC<Props> = (props) => {
             <AssetSummary />
             <AssetChart />
             <AssetMarkets />
-            <AssetAbout />
-            <AssetNews />
+            <AssetAbout topBarData={seedTopBarData} assetAbout={seedAssetAbout} />
+            <AssetNews topBarData = {seedTopBarData}/>
         </div>
     );
 };
