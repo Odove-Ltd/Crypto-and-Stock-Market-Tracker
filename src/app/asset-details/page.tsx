@@ -7,14 +7,12 @@ import AssetAbout from './asset-about/AssetAbout';
 import AssetNews from './asset-news/AssetNews';
 import {seedTopBarData, seedAssetAbout, TopBarDataType} from "@/app/utils/seed-data/seed-asset-details";
 
-
 interface Props {
-    topBarData: TopBarDataType;
-    assetAbout: string;
+    seedTopBarData: TopBarDataType;
+    seedAssetAbout: string[];
 }
 
 const AssetDetails: React.FC<Props> = () => {
-    // Component logic here
 
     return (
         <div className="flex flex-col px-20">
