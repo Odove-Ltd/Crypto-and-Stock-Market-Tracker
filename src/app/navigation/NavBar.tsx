@@ -13,8 +13,8 @@ const NavBar: React.FC<Props> = (props) => {
         <div className='flex flex-row w-full justify-center p-5'>
             <a
             className={buttonClass1}
-            href="/">
-                Home
+            href="/dashboard">
+                Dashboard
             </a>
             <a
             className={buttonClass1}

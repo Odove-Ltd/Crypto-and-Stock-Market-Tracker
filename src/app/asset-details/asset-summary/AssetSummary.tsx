@@ -10,7 +10,6 @@ interface Props {
 }
 
 const AssetSummary: React.FC<Props> = ({topBarData = seedTopBarData,  assetSummary = seedAssetSummary}) => {
-    // Component logic here
 
     const [initialTopBarData, setTopBarData] = useState<TopBarDataType>(topBarData);
     const [initialAssetSummary, setAssetSummary] = useState(assetSummary);
