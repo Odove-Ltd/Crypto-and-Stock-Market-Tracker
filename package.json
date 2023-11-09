@@ -24,6 +24,6 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "@vercel/next": "^4.0.10"
+    "@vercel/next": "^4.0.14"
   }
 }
