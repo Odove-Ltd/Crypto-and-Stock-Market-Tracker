@@ -17,7 +17,7 @@ const Overview = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response: AxiosResponse = await axios.post('http://localhost:3000/overview', {
+        const response: AxiosResponse = await axios.post('http://localhost:3003/api/overview', {
         currency: "USD"});
         
         const responseData = response.data;
@@ -29,7 +29,6 @@ const Overview = () => {
           liquidity: responseData.liquidity,
           btcDominance: responseData.btcDominance,
         });
-
       }
       catch (error) {
         console.error('Error fetching overview data:', error);
@@ -38,7 +37,6 @@ const Overview = () => {
 
     fetchData();
   }, []);
-
 
   return (
     <div className='border border-black rounded-md p-8'>
@@ -54,7 +52,7 @@ const Overview = () => {
         {Object.entries(overviewData).map(([key, value], index) => (
           <div className='flex justify-between items-center text-right gap-5' key={index + 1}>
             <div className='text-black'>{key}</div>
-            <div className={value >=0 ? "text-green-600" : "text-red-600"}>{value}</div>
+            <div className={value >=0 ? "text-green-600" : "text-red-600"}>${value.toLocaleString()}</div>
           </div>
         ))}
       </div>
