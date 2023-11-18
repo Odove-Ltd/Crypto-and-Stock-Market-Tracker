@@ -1,49 +1,36 @@
-## Overview
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-This project aims to develop a comprehensive platform that provides users with real-time data and insights for both shares and cryptocurrencies. The platform will enable users to search, track, and analyse the performance of individual shares and coins, view trending assets, and access timely charts for various time frames.
+## Getting Started
 
+First, run the development server:
 
-## Features
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-- **Real-time Data:** Access up-to-the-minute market data for shares and cryptocurrencies, including current prices, percentage changes, and trading volumes.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- **Search and Track Assets:** Effortlessly search for specific shares or cryptocurrencies and add them to your personalised watchlist for quick access and tracking.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- **Performance Analysis:** Analyse the historical performance of individual shares and cryptocurrencies through interactive charts and data visualisations.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-- **Trending Assets:** Stay informed about the latest market trends by viewing the top-performing and most actively traded shares and cryptocurrencies.
+## Learn More
 
-- **Timely Charts:** Access various chart types and time frames to visualise price movements and identify patterns for informed decision-making.
-  
+To learn more about Next.js, take a look at the following resources:
 
-## Technology Stack
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-- **Front-end:** ReactJS and TypeScript for building a dynamic and responsive user interface.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-- **Back-end:** Node.js and Express for handling data requests, processing, and communication with data sources.
+## Deploy on Vercel
 
-- **Data Sources:** Comprehensive and efficient APIs from financial data providers to ensure accurate and timely market data.
-  
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-## Project Structure
-
-- **Client:** The front-end application responsible for user interaction, data visualisation, and providing a seamless user experience.
-
-- **Server:** The back-end application responsible for handling data requests, processing data from external sources, and communicating with the database.
-
-- **Database:** The data storage layer responsible for storing and managing market data, user watchlists, and other relevant information.
-  
-
-## Contributing
-
-We welcome contributions from the community to help enhance and improve the Platform. If you're interested in contributing, here are some ways you can get involved:
-
-- **Report Issues:** If you encounter any bugs or unexpected behaviour, please report them as issues on the project's GitHub repository.
-
-- **Suggest Features:** Share your ideas for new features or enhancements that would make the platform even more valuable for users.
-
-- **Contribute Code:** If you have programming experience, you can contribute directly to the codebase by fixing bugs, implementing new features, or improving existing code.
-
-- **Documentation and Translations:** Help us improve the documentation and make the platform accessible to a wider audience by contributing translations or improving existing documentation.
-
-Before starting any significant contribution, please discuss your ideas with the project maintainers to ensure alignment with the project's goals and roadmap. We appreciate your contributions and look forward to collaborating with the community to make this platform a success.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
