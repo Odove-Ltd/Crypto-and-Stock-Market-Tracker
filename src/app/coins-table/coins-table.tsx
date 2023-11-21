@@ -6,8 +6,8 @@ const CoinsTable = () => {
     <div className="my-10 lg:px-10">
       <table className="border-collapse  border-l-0 border-r-0 text-black border-black text-center table-fixed w-full">
         <thead>
-          <tr className=" divide  d ">
-            <th className="border border-l-0 border-r-0">Rank</th>
+          <tr className=" ">
+            <th className="">Rank</th>
             <th>Name</th>
             <th>Price</th>
             <th>24hr</th>
