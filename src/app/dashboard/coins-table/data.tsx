@@ -55,4 +55,46 @@ export const coinDataHeader = [
     circulingSupply: "18,9924,006 BTC",
     last7days: "char",
   },
+  {
+    rank: 1,
+    name: "bitcoin",
+    price: "41,365.02",
+    xxivhr: "9.3%",
+    sevenDays: "434",
+    marketCap: "$788,547,0699,229",
+    volume: {
+      price: "$27,875,375,730",
+      vol: "34,3434",
+    },
+    circulingSupply: "18,9924,006 BTC",
+    last7days: "char",
+  },
+  {
+    rank: 9,
+    name: "bitcoin",
+    price: "41,365.02",
+    xxivhr: "9.3%",
+    sevenDays: "434",
+    marketCap: "$788,547,0699,229",
+    volume: {
+      price: "$27,875,375,730",
+      vol: "34,3434",
+    },
+    circulingSupply: "18,9924,006 BTC",
+    last7days: "char",
+  },
+  {
+    rank: 1,
+    name: "bitcoin",
+    price: "41,365.02",
+    xxivhr: "9.3%",
+    sevenDays: "434",
+    marketCap: "$788,547,0699,229",
+    volume: {
+      price: "$27,875,375,730",
+      vol: "34,3434",
+    },
+    circulingSupply: "18,9924,006 BTC",
+    last7days: "char",
+  }
 ];
