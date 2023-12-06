@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 import { BiSolidUpArrow } from 'react-icons/bi';
-import { gainers } from '../data/coindata';
+import { gainers } from './data/coindata';
 
 const BiggestGainers = () => {
   return (

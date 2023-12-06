@@ -2,8 +2,8 @@
 
 import React from "react";
 import { useState, useEffect } from "react";
-import { coinDataHeader } from "./data";
 import axios from "axios";
+require('dotenv').config();
 
 const CoinsTable = () => {
 
@@ -14,7 +14,7 @@ const CoinsTable = () => {
   const [last7days, setLast7days] =  useState({});
 
   useEffect (() => {
-    const fetchchartData = async () => {
+    const fetchLast7daysData = async () => {
       try{
         const response = await axios.post("https://api.livecoinwatch.com/coins/single/history",
         {
@@ -26,16 +26,11 @@ const CoinsTable = () => {
         },{
           headers:{
             "content-type": "application/json",
-            "x-api-key": "3a724224-1dad-4ae5-923d-166be3c7f62e",
+            "x-api-key": process.env.LIVE_COIN_API,
           },
         }
         );
         const data = response.data;
-        console.log(data)
-        console.log("all good")
-        // setCoinData(data)
-        // console.log(data[0].code)
-        //setMarketCap(data.)
       } catch(error){
         console.error(`Didn't work ${error}`)
       }
@@ -44,7 +39,7 @@ const CoinsTable = () => {
       }
     };
   
-    fetchchartData();
+    fetchLast7daysData();
   },
   []);
 
@@ -70,7 +65,6 @@ useEffect (() => {
       console.log(data)
       setCoinData(data)
       console.log(data[0].code)
-      //setMarketCap(data.)
     } catch(error){
       console.error(`error is ${error}`)
     }
@@ -79,40 +73,11 @@ useEffect (() => {
     }
   };
 
+  //setInterval(fetchData, 1000)
   fetchData();
 },
 []);
 
-useEffect(() => {
-  const fetchChartData = async (coinCode: string) => {
-    try {
-      const response = await axios.post(
-        "https://api.livecoinwatch.com/coins/single/history",
-        {
-          currency: "USD",
-          code: coinCode,
-          start: startTimestamp,
-          end: now,
-          meta: true,
-        },
-        {
-          headers: {
-            "content-type": "application/json",
-            "x-api-key": "3a724224-1dad-4ae5-923d-166be3c7f62e",
-          },
-        }
-      );
-      const data = response.data;
-      console.log(data);
-    } catch (error) {
-      console.error(`Error fetching chart data for ${coinCode}`);
-    }
-  };
-
-  coinData.forEach((coin) => {
-    fetchChartData(coin.code);
-  });
-}, [coinData, startTimestamp, now]);
   return (
     <div className="my-10 lg:px-10">
       <table className="border-collapse  border-l-0 border-r-0 text-black border-black text-center table-fixed w-full">
@@ -133,21 +98,20 @@ useEffect(() => {
         <tbody>
           {coinData.map((coin, index) => {
             return (
-              <tr key={coin.code} className=" my-4 font-normal">
+              <tr key={coin.code} className="my-4 font-normal">
                 <td>{index + 1}</td>
-                <td className="text-sm flex flex-col" >
+                <td className="flex items-center justify-center">
+                  <img src={coin.webp32} alt={coin.name}/>
+                  <span className="text-sm flex flex-col ml-2">
                   <span>{coin.name}</span>
-                  <span>{coin.code}</span>
+                  <span className="c-grey text-gray-500">{coin.code}</span>
+                  </span>
                 </td>
-                <td>{coin.rate}</td>
+                <td>${coin.rate}</td>
                 <td>{coin.delta.day}</td>
                 <td>{coin.delta.week}</td>
-                <td>{coin.cap}</td>
-                {/* <td className="text-sm flex flex-col">
-                  <span>{coin.volume.price}</span>
-                  <span className=" text-xs ">{coin.volume.vol}</span>
-                </td> */}
-                <td>{coin.volume}</td>
+                <td>${coin.cap}</td>
+                <td>${coin.volume}</td>
                 <td>{coin.circulatingSupply}</td>
                 <td>{coin.last7days}</td>
               </tr>
@@ -155,6 +119,11 @@ useEffect(() => {
           })}
         </tbody>
       </table>
+      <div className="flex text-sm text-black">
+        <p className="mr-4">Showing 1-50 of 100</p>
+        <p className="border border-black border-1 p-2 text-xs">1</p>
+        <p className="border border-black border-1 p-2">2</p>
+      </div>
     </div>
   );
 };

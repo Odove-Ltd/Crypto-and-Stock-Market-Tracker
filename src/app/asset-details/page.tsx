@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import TopBar from './top-bar/TopBar';
 import AssetSummary from './asset-summary/AssetSummary';
-import AssetChart from './asset-chart/AssetChart';
-import AssetMarkets from './asset-markets/AssetMarkets';
-import AssetAbout from './asset-about/AssetAbout';
+import AssetChart from './AssetChart';
+import AssetMarkets from './AssetMarkets';
+import AssetAbout from './AssetAbout';
 import AssetNews from './asset-news/AssetNews';
 import {seedTopBarData, seedAssetAbout, TopBarDataType} from "@/app/utils/seed-data/seed-asset-details";
 

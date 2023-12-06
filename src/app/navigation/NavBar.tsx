@@ -14,12 +14,27 @@ const NavBar: React.FC<Props> = (props) => {
             <a
             className={buttonClass1}
             href="/dashboard">
-                Dashboard
+                Cryptocurrency
             </a>
             <a
             className={buttonClass1}
             href="/asset-details">
                 Asset Details
+            </a>
+            <a
+            className={buttonClass1}
+            href="/dashboard">
+                Exchanges
+            </a>
+            <a
+            className={buttonClass1}
+            href="/dashboard">
+                Watchlist
+            </a>
+            <a
+            className={buttonClass1}
+            href="/dashboard">
+                News
             </a>
         </div>
     );
