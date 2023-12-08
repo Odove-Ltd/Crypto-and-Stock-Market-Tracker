@@ -95,7 +95,7 @@ const TopText = () => {
   return (
     <div className='flex flex-col items-start justify-center gap-8 mb-8 ml-20'>
       <div className='flex flex-col'>
-        <h1 className='text-xl font-bold text-black'>Today's Cryptocurrency Data </h1>
+        <h1 className='text-xl font-bold text-black'>Today&apos;s Cryptocurrency Data </h1>
         <h3 className='text-base font-normal text-black'>
           The global crypto market cap is ${formatMarketCap(marketCap)}, a {' '} 
           <span className={`text-${percentageChange > 0 ? 'green': 'red'}-700`}>{Math.abs(percentageChange)}%</span>
