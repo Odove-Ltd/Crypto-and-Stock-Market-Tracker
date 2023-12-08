@@ -41,7 +41,7 @@ const TopText = () => {
     }
     fetchData();
 
-  }, [])
+  }, [now, twentyFourHoursAgo])
 
   useEffect(()=>{
     const fetchData = async()=>{
