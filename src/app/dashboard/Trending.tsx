@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 import { BiSolidUpArrow } from 'react-icons/bi';
-import { trending } from '../data/coindata';
+import { trending } from './data/coindata';
 
 const Trending = () => {
   return (

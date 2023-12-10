@@ -17,5 +17,14 @@
 }
 
 body {
- 
+}
+
+@layer utilities {
+  th,
+  td {
+    @apply border py-3  border-l-0 border-r-0;
+  }
+  td {
+    @apply text-sm;
+  }
 }
