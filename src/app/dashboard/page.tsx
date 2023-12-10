@@ -6,10 +6,12 @@ import RecentlyAdded from "./RecentlyAdded";
 import TopText from "./TopText";
 import CoinsTable from "./coins-table";
 
+
+
 const Dashboard: React.FC = () => {
   return (
-    <>
-      <TopText />
+    <div>
+      <TopText /> 
       <div className="flex flex-row justify-center gap-12 items-center">
         <Trending />
         <Overview />
@@ -17,7 +19,7 @@ const Dashboard: React.FC = () => {
         <RecentlyAdded />
       </div>
       <CoinsTable />
-    </>
+    </div>
   );
 };
 

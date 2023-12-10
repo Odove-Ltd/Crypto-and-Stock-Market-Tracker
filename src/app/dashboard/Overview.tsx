@@ -3,11 +3,12 @@
 import { useState, useEffect } from 'react';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 import { BiSolidUpArrow } from 'react-icons/bi';
+import { IOverview } from '../types/overview.type';
 import axios, {AxiosResponse} from 'axios';
 
 const Overview = () => {
 
-  const [overviewData, setOverviewData] = useState({
+  const [overviewData, setOverviewData] = useState<IOverview>({
     marketCap: 0,
     volume: 0,
     liquidity: 0,

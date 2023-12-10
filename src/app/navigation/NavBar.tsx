@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {buttonClass1} from '../utils/styling/tempTWStyles';
+import Search from '../dashboard/Search';
+import { coinDataContext } from '../context/coin-data.context';
 
 interface Props {
     // Define props here
@@ -35,7 +37,8 @@ const NavBar: React.FC<Props> = (props) => {
             className={buttonClass1}
             href="/dashboard">
                 News
-            </a>
+            </a> 
+            <Search/>
         </div>
     );
 };
