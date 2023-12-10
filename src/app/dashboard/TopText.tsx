@@ -1,13 +1,14 @@
 'use client'
-import {config} from 'dotenv'
+// import {config} from 'dotenv'
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 
-config()
+// config()
 
 const TopText = () => {
 
-  const apiKey: string = process.env.LIVE_COIN_API!;
+  const apiKey: string = "3a724224-1dad-4ae5-923d-166be3c7f62e"
+  ;
   const [marketCap, setMarketCap] = useState<number>(0);
   const [marketCapLast24Hrs, setMarketCapLast24Hrs] = useState<number>(0);
 

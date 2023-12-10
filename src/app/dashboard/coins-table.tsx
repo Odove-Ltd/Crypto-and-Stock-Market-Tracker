@@ -3,45 +3,28 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-require('dotenv').config();
+import { fetchLast7daysData } from "../services/coin.service";
+import { Sparkline } from "../services/coin.service";
+// require('dotenv').config();
+
+
+
 
 const CoinsTable = () => {
 
+  const API_KEY = "3a724224-1dad-4ae5-923d-166be3c7f62e"
   const now = Date.now()
   const startTimestamp = now - (7 * 24 * 60 * 60 * 1000);
- 
-  const [coinData, setCoinData] = useState<any[]>([]);
-  const [last7days, setLast7days] =  useState({});
 
-  useEffect (() => {
-    const fetchLast7daysData = async () => {
-      try{
-        const response = await axios.post("https://api.livecoinwatch.com/coins/single/history",
-        {
-          currency: "USD",
-          code: "BTC",
-          start: startTimestamp,
-          end: now,
-          meta: true,
-        },{
-          headers:{
-            "content-type": "application/json",
-            "x-api-key": process.env.LIVE_COIN_API,
-          },
-        }
-        );
-        const data = response.data;
-      } catch(error){
-        console.error(`Didn't work ${error}`)
-      }
-      finally{
-        console.log('data')
-      }
-    };
-  
-    fetchLast7daysData();
-  },
-  []);
+  const [coinData, setCoinData] = useState<any[]>([]);
+  const [last7days, setLast7days] =  useState<any>([]);
+
+
+  const coinHistory = (coin: string) => {
+    const filteredData = last7days.filter((name: string) => name.toLowerCase() === coin.toLowerCase());
+
+  }
+
 
 useEffect (() => {
   const fetchData = async () => {
@@ -62,9 +45,16 @@ useEffect (() => {
       }
       );
       const data = response.data;
-      console.log(data)
+
+      data.map(async (item:any) => {
+        const singleData = await fetchLast7daysData(item.code)
+        setLast7days((prevData: any) => {
+          return {...prevData, [item.code]: singleData}
+        })
+      })
+      // console.log(data)
       setCoinData(data)
-      console.log(data[0].code)
+      // console.log(data[0].code)
     } catch(error){
       console.error(`error is ${error}`)
     }
@@ -77,6 +67,10 @@ useEffect (() => {
   fetchData();
 },
 []);
+
+
+console.log("last 7 days:",last7days)
+
 
   return (
     <div className="my-10 lg:px-10">
@@ -113,7 +107,7 @@ useEffect (() => {
                 <td>${coin.cap}</td>
                 <td>${coin.volume}</td>
                 <td>{coin.circulatingSupply}</td>
-                <td>{coin.last7days}</td>
+                <td> <Sparkline history={last7days.filter((item: any) => item.name.toLowerCase() === coin.name.toLowerCase())} /> </td>
               </tr>
             );
           })}
@@ -129,3 +123,7 @@ useEffect (() => {
 };
 
 export default CoinsTable;
+function setCoinData(data: any) {
+  throw new Error("Function not implemented.");
+}
+
