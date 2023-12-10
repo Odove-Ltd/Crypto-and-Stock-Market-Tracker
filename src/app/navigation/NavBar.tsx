@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {buttonClass1} from '../utils/styling/tempTWStyles';
-import Search from '../dashboard/Search';
+import Search from './Search';
 import { coinDataContext } from '../context/coin-data.context';
 
 interface Props {
