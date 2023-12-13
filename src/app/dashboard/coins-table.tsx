@@ -4,14 +4,21 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { ICoinData } from "../types/coin.data.type";
 import { coinDataContext } from "../context/coin-data.context";
+import { Pagination } from "./Pagination";
 
-const CoinsTable = () => {
+const CoinsTable: React.FC = () => {
 
   const now = Date.now()
   const startTimestamp = now - (7 * 24 * 60 * 60 * 1000);
  
   const [coinData, setCoinData] = useState<ICoinData[]>([]);
   const [last7days, setLast7days] =  useState({});
+
+  const [currentPage, setCurrentPage] = useState<number>(2);
+  const [coinPerPage, setCoinPerPage] = useState<number>(50)
+  const lastPostIndex: number = currentPage * coinPerPage;
+  const firstPostIndex: number = lastPostIndex - coinPerPage;
+  const currentCoins: ICoinData[] = coinData.slice(firstPostIndex, lastPostIndex);
 
 useEffect (() => {
   const fetchData = async () => {
@@ -22,7 +29,7 @@ useEffect (() => {
         sort: "rank",
         order: "ascending",
         offset: 0,
-        limit: 50,
+        limit: 100,
         meta: true,
       },{
         headers:{
@@ -96,7 +103,7 @@ useEffect (() => {
           </thead>
 
           <tbody>
-            {coinData.map((coin, index) => {
+            {currentCoins.map((coin, index) => {
               return (
                 <tr key={coin.code} className="my-4 font-normal">
                   <td>{coin.rank}</td>
@@ -119,13 +126,12 @@ useEffect (() => {
             })}
           </tbody>
         </table>
-        {coinData.length > 1 &&(
-        <div className="flex text-sm text-black">
-          <p className="mr-4">Showing 1-50 of 100</p>
-          <p className="border border-black border-1 p-2 text-xs">1</p>
-          <p className="border border-black border-1 p-2">2</p>
-        </div>
-        )}
+        <Pagination 
+        totalPosts = {coinData.length}
+        coinPerPage = {coinPerPage}
+        setCurrentPage = {setCurrentPage} 
+        currentPage = {currentPage}
+        />
       </div>
     </coinDataContext.Provider>
   );

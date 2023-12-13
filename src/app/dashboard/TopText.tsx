@@ -2,7 +2,7 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 
-const TopText = () => {
+const TopText: React.FC = () => {
 
   const [marketCap, setMarketCap] = useState<number>(0);
   const [marketCapLast24Hrs, setMarketCapLast24Hrs] = useState<number>(0);
