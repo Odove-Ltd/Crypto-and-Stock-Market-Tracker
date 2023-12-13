@@ -7,11 +7,9 @@ import { coinDataContext } from "../context/coin-data.context";
 
 const now = Date.now();
 const sevenDaysAgoTimestamp = now - (7 * 24 * 60 * 60 * 1000);
- 
-  const [coinData, setCoinData] = useState<ICoinData[]>([]);
-  const [last7days, setLast7days] =  useState({});
 
 useEffect (() => {
+
   const fetchData = async () => {
     try{
       const response = await axios.post("https://api.livecoinwatch.com/coins/list",
@@ -32,8 +30,7 @@ useEffect (() => {
       const data = response.data;
       console.log('coindata')
       console.log(data)
-      setCoinData(data)
-      console.log(data[0].code)
+      return data;
     } catch(error){
       console.error(`error is ${error}`)
     }
@@ -44,7 +41,8 @@ useEffect (() => {
 []);
 
 useEffect (() => {
-  const fetchLast7daysData = async () => {
+   const fetchLast7daysData = async () => {
+    
     try{
       const response = await axios.post("https://api.livecoinwatch.com/coins/single/history",
       {
