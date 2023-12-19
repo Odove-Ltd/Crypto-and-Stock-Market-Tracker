@@ -6,7 +6,7 @@ import { BiSolidUpArrow } from 'react-icons/bi';
 import { IOverview } from '../types/overview.type';
 import axios, {AxiosResponse} from 'axios';
 
-const Overview = () => {
+const Overview: React.FC = () => {
 
   const [overviewData, setOverviewData] = useState<IOverview>({
     marketCap: 0,

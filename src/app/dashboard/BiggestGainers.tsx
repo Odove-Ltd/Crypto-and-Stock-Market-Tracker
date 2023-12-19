@@ -3,7 +3,7 @@ import { AiOutlineCaretDown } from 'react-icons/ai';
 import { BiSolidUpArrow } from 'react-icons/bi';
 import { gainers } from './data/coindata';
 
-const BiggestGainers = () => {
+const BiggestGainers: React.FC = () => {
   return (
     <div className='border border-black rounded-md p-8'>
     <div className='flex justify-between items-center'>

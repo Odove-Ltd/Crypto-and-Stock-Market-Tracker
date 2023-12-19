@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface ICoinData{
     code: string;
     rate: number;
@@ -12,3 +14,10 @@ export interface ICoinData{
       week: number;
     };
   };
+
+  export interface IPaginationProps{
+    totalPosts: number;
+    coinPerPage: number;
+    setCurrentPage: Dispatch<SetStateAction<number>>;
+    currentPage: number;
+}
