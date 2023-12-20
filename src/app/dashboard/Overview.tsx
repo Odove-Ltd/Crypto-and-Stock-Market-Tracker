@@ -18,14 +18,19 @@ const Overview: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response: AxiosResponse = await axios.post('http://localhost:3003/api/overview', {
-        currency: "USD"});
+        const response: AxiosResponse = await axios.post('https://api.livecoinwatch.com/overview', {
+        currency: "USD"},{
+          headers:{
+            "content-type": "application/json",
+            "x-api-key": "3a724224-1dad-4ae5-923d-166be3c7f62e",
+          }
+        });
         
         const responseData = response.data;
         console.log("Done")
 
         setOverviewData({
-          marketCap: responseData.marketCap,
+          marketCap: responseData.cap,
           volume: responseData.volume,
           liquidity: responseData.liquidity,
           btcDominance: responseData.btcDominance,
