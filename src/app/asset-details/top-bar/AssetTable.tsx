@@ -1,10 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { assetDetailsContainerClass } from "@/app/utils/styling/tempTWStyles";
 import axios from "axios";
 import { IAssetTopTableData } from "@/app/types/coin.data.type";
+import FetchAssetDetailsData from "@/app/services/assetDetailsServices";
+import { useRouter } from "next/router";
 
-const AssetTable: React.FC = () => {
+const AssetTable: React.FC = (prop) => {
+
+    const router = useRouter()
+    const {coinCode} = router.query
+    const coinCodeString = coinCode as string;
 
     const [coinUSDData, setCoinUSDData] = useState<IAssetTopTableData>({
         hour: 0,
@@ -37,50 +43,68 @@ const AssetTable: React.FC = () => {
     const [allTimeHigh, setAllTimeHigh] = useState<number>();
 
 
-    const fetchAssetData = async (currency: string)=>{
-        try{
-            const response = await axios.post ("https://api.livecoinwatch.com/coins/single",{
-                currency: currency.toLocaleUpperCase(),
-                code: "ETH",
-                meta: true,
-            },{
-                headers:{
-                    "content-type": "application/json",
-                    "x-api-key": "3a724224-1dad-4ae5-923d-166be3c7f62e",
-                }
-            })
-            const responseData = response.data
-            console.log(responseData)
-
-            switch(currency.toLocaleUpperCase()){
-                case "USD":
-                    setCoinUSDData(responseData.delta)
-                    break;
-                case "BTC":
-                    setCoinBTCData(responseData.delta)
-                    break;
-                case "ETH":
-                    setCoinETHDData(responseData.delta)
-                    break;
-            }
-
-            setCirculatingSupply(responseData.circulatingSupply);
-            setTotalSupply(responseData.totalSupply);
-            setMaxSupply(responseData.maxSupply);
-            setLiquidity(responseData.liquidity);
-            setAllTimeHigh(responseData.allTimeHighUSD);
-
-        }
-        catch(error){
-            console.log(error);
-        }
-    };
-
     useEffect(()=>{
-        fetchAssetData("USD");
-        fetchAssetData("BTC");
-        fetchAssetData("ETH");
-    }, [])
+        const fetchData = async () =>{
+            const usdData = await FetchAssetDetailsData("USD", coinCodeString);
+            setCirculatingSupply(usdData.circulatingSupply);
+            setTotalSupply(usdData.totalSupply);
+            setMaxSupply(usdData.maxSupply);
+            setLiquidity(usdData.liquidity);
+            setAllTimeHigh(usdData.allTimeHighUSD);
+
+            setCoinUSDData(usdData.delta)
+            const btcData = await FetchAssetDetailsData("BTC", coinCodeString);
+
+            setCoinETHDData(btcData.delta)
+            const ethData = await FetchAssetDetailsData("ETH", coinCodeString);
+            setCoinETHDData(ethData.delta)
+        };
+}, [])
+
+    // const fetchAssetData = async (currency: string, code: string)=>{
+    //     try{
+    //         const response = await axios.post ("https://api.livecoinwatch.com/coins/single",{
+    //             currency: currency.toLocaleUpperCase(),
+    //             code: code.toLocaleUpperCase(),
+    //             meta: true,
+    //         },{
+    //             headers:{
+    //                 "content-type": "application/json",
+    //                 "x-api-key": "3a724224-1dad-4ae5-923d-166be3c7f62e",
+    //             }
+    //         })
+    //         const responseData = response.data
+    //         console.log(responseData)
+
+    //         switch(currency.toLocaleUpperCase()){
+    //             case "USD":
+    //                 setCoinUSDData(responseData.delta)
+    //                 break;
+    //             case "BTC":
+    //                 setCoinBTCData(responseData.delta)
+    //                 break;
+    //             case "ETH":
+    //                 setCoinETHDData(responseData.delta)
+    //                 break;
+    //         }
+
+    //         setCirculatingSupply(responseData.circulatingSupply);
+    //         setTotalSupply(responseData.totalSupply);
+    //         setMaxSupply(responseData.maxSupply);
+    //         setLiquidity(responseData.liquidity);
+    //         setAllTimeHigh(responseData.allTimeHighUSD);
+
+    //     }
+    //     catch(error){
+    //         console.log(error);
+    //     }
+    // };
+
+    // useEffect(()=>{
+    //     fetchAssetData("USD", prop);
+    //     fetchAssetData("BTC", prop);
+    //     fetchAssetData("ETH", prop);
+    // }, [])
   
 
 

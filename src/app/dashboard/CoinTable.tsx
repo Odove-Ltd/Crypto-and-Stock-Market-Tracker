@@ -2,9 +2,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios, {AxiosResponse} from 'axios';
+import Link from "next/link";
 import { ICoinData } from "../types/coin.data.type";
 import { coinDataContext } from "../context/coin-data.context";
 import { Pagination } from "./Pagination";
+import AssetTable from "../asset-details/top-bar/AssetTable";
 
 const CoinsTable: React.FC = () => {
 
@@ -107,13 +109,15 @@ useEffect (() => {
               return (
                 <tr key={coin.code} className="my-4 font-normal">
                   <td>{coin.rank}</td>
-                  <td className="flex items-center justify-center">
-                    <img src={coin.webp32} alt={coin.name}/>
-                    <span className="text-sm flex flex-col ml-2">
-                    <span>{coin.name}</span>
-                    <span className="c-grey text-gray-500">{coin.code}</span>
-                    </span>
-                  </td>
+                  <Link href={`/asset-details/${coin.code}`}>
+                    <td className="flex items-center justify-center">
+                      <img src={coin.webp32} alt={coin.name}/>
+                      <span className="text-sm flex flex-col ml-2">
+                      <span>{coin.name}</span>
+                      <span className="c-grey text-gray-500">{coin.code}</span>
+                      </span>
+                    </td>
+                  </Link>
                   <td>${coin.rate}</td>
                   <td>{coin.delta.day}</td>
                   <td>{coin.delta.week}</td>
