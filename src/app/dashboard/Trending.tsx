@@ -5,7 +5,7 @@ import { trending } from './data/coindata';
 
 const Trending: React.FC = () => {
   return (
-        <div className='border border-black rounded-md p-8'>
+        <div className='border border-black rounded-md p-4'>
           <div className='flex justify-between items-center'>
             <h3 className='text-lg font-bold text-black'>Trending</h3>
             <div className='flex items-center gap-4'>

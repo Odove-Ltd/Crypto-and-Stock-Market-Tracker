@@ -1,40 +1,33 @@
-'use client'
-import {useState} from 'react';
-import {Link} from 'react-router-dom';
-import {useContext} from 'react';
-import { coinDataContext } from '../context/coin-data.context';
+"use client";
 
-const Search: React.FC = ()=>{
-    const data = useContext(coinDataContext);
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
-    const [searchTerm, setSearchTerm] = useState<string>('')
-
-    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>)=>{
-        setSearchTerm(event.target.value)
+const Search: React.FC = () => {
+  const searchparams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const query = new URLSearchParams(searchparams);
+  const handleSearch = (term: string) => {
+    if (term) {
+      query.set("query", term);
+    } else {
+      query.delete("query");
     }
+    replace(`${pathname}?${query.toString()}`);
+  };
 
-   const filteredCoin = data.filter((coin)=>{
-        coin.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-        coin.code.toLocaleLowerCase().includes(searchTerm.toLowerCase())
-   });
-
-    return(
-        <div>
-            <input 
-            type="text" 
-            placeholder="Search" 
-            value={searchTerm}
-            onChange={handleSearch}
-            className='border border-solid p-2 m-5 border-1 border-black rounded-lg text-black w-1/2'/>
-            <ul>
-                {filteredCoin.map((coin)=>(
-                    <li key={coin.rank}>
-                        <Link to={"/asset-details"}>{coin.name}</Link>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Search"
+        defaultValue={searchparams.get("query")?.toString()}
+        onChange={(e) => handleSearch(e.target.value)}
+        className="border border-solid p-2 m-5 border-1 border-black rounded-lg text-black w-1/2"
+      />
+    </div>
+  );
 };
 
 export default Search;
+

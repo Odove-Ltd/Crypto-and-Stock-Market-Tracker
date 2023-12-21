@@ -6,42 +6,9 @@ import { BiSolidUpArrow } from "react-icons/bi";
 import { IOverview } from "../types/overview.type";
 import axios, { AxiosResponse } from "axios";
 import { fetchCoinOverview } from "../lib/action";
-const Overview: React.FC = async () => {
-  const [overviewData, setOverviewData] = useState<IOverview>({
-    marketCap: 0,
-    volume: 0,
-    liquidity: 0,
-    btcDominance: 0,
-  });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response: AxiosResponse = await axios.post(
-          "http://localhost:3003/api/overview",
-          {
-            currency: "USD",
-          }
-        );
-
-        const responseData = response.data;
-        console.log("Done");
-
-        setOverviewData({
-          marketCap: responseData.marketCap,
-          volume: responseData.volume,
-          liquidity: responseData.liquidity,
-          btcDominance: responseData.btcDominance,
-        });
-      } catch (error) {
-        console.error("Error fetching overview data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-  // const overviewData: IOverview = await fetchCoinOverview();
-  // console.log(overviewData);
+const Overviews: React.FC = async () => {
+  const overviewData = await fetchCoinOverview();
+  console.log(overviewData);
   return (
     <div className="border border-black rounded-md p-4">
       <div className="flex justify-between items-center">
@@ -53,7 +20,7 @@ const Overview: React.FC = async () => {
       </div>
 
       <div className="grid gap-4">
-        {Object.entries(overviewData).map(([key, value], index) => (
+        {Object.entries(overviewData)?.map(([key, value], index) => (
           <div
             className="flex justify-between items-center text-right gap-5"
             key={index + 1}
@@ -69,4 +36,4 @@ const Overview: React.FC = async () => {
   );
 };
 
-export default Overview;
+export default Overviews;

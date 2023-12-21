@@ -38,7 +38,7 @@ const NavBar: React.FC<Props> = (props) => {
             href="/dashboard">
                 News
             </a> 
-            <Search/>
+            <Search placeholder='search coin'/>
         </div>
     );
 };
