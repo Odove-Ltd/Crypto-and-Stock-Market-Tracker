@@ -3,8 +3,8 @@ import axios from 'axios';
 const FetchAssetDetailsData = async (currency: string, code: string)=>{
     try{
         const response = await axios.post ("https://api.livecoinwatch.com/coins/single",{
-            currency: currency.toLocaleUpperCase(),
-            code: code.toLocaleUpperCase,
+            currency: currency,
+            code: code,
             meta: true,
         },{
             headers:{

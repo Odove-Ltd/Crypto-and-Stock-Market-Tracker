@@ -1,16 +1,21 @@
 "use client";
 import React, { use, useEffect, useState } from "react";
 import { assetDetailsContainerClass } from "@/app/utils/styling/tempTWStyles";
-import axios from "axios";
 import { IAssetTopTableData } from "@/app/types/coin.data.type";
 import FetchAssetDetailsData from "@/app/services/assetDetailsServices";
-import { useRouter } from "next/router";
+import { useSearchParams } from 'next/navigation';
+import axios from 'axios';
 
-const AssetTable: React.FC = (prop) => {
 
-    const router = useRouter()
-    const {coinCode} = router.query
-    const coinCodeString = coinCode as string;
+const AssetTable: React.FC = () => {
+
+    // const router = useRouter()
+    // //const { id } = router.query
+    // // const coinCodeString = id as string;
+    // const coinCodeString = router.query.coinCode as string;
+
+    const searchParams = useSearchParams();
+    const coinCodeString = searchParams.get('coinCode') as string; // Access the coin code from the query
 
     const [coinUSDData, setCoinUSDData] = useState<IAssetTopTableData>({
         hour: 0,
@@ -51,14 +56,16 @@ const AssetTable: React.FC = (prop) => {
             setMaxSupply(usdData.maxSupply);
             setLiquidity(usdData.liquidity);
             setAllTimeHigh(usdData.allTimeHighUSD);
-
             setCoinUSDData(usdData.delta)
-            const btcData = await FetchAssetDetailsData("BTC", coinCodeString);
 
-            setCoinETHDData(btcData.delta)
+            const btcData = await FetchAssetDetailsData("BTC", coinCodeString);
+            setCoinBTCData(btcData.delta)
+
             const ethData = await FetchAssetDetailsData("ETH", coinCodeString);
             setCoinETHDData(ethData.delta)
+            console.log(ethData)
         };
+        fetchData();
 }, [])
 
     // const fetchAssetData = async (currency: string, code: string)=>{
