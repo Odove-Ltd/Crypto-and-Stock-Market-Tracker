@@ -109,6 +109,7 @@ useEffect (() => {
               return (
                 <tr key={coin.code} className="my-4 font-normal">
                   <td>{coin.rank}</td>
+                  {/* <Link href={`/asset-details/${coin.code}`}> */}
                   <Link href={`/asset-details/${coin.code}`}>
                     <td className="flex items-center justify-center">
                       <img src={coin.webp32} alt={coin.name}/>

@@ -6,8 +6,6 @@ import RecentlyAdded from "./RecentlyAdded";
 import TopText from "./TopText";
 import CoinsTable from "./CoinTable";
 
-
-
 const Dashboard: React.FC = () => {
   return (
     <div>

@@ -3,7 +3,6 @@ import React, {useEffect, useState} from 'react';
 import {buttonClass1} from '../utils/styling/tempTWStyles';
 import Search from './Search';
 import { coinDataContext } from '../context/coin-data.context';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import AssetDetails from '../asset-details/page';
 
 interface Props {
@@ -15,8 +14,6 @@ const NavBar: React.FC<Props> = (props) => {
     // Component logic here
 
     return (
-        <Router>
-            <Routes>
             <div className='flex flex-row w-full justify-center p-5'>
                 <a
                 className={buttonClass1}
@@ -43,11 +40,9 @@ const NavBar: React.FC<Props> = (props) => {
                 href="/dashboard">
                     News
                 </a> 
-                <Route path="/asset-details/:coinCode" element={<AssetDetails />} />
+                {/* <Route path="/asset-details/:coinCode" element={<AssetDetails />} /> */}
                 <Search/>
             </div>
-            </Routes>
-        </Router>
     );
 };
 

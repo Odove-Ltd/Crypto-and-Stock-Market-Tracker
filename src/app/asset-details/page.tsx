@@ -13,7 +13,7 @@ const AssetDetails: React.FC = () => {
     return (
         <div className="flex flex-col px-20">
             <TopBar />
-            <AssetTable/>
+            {/* <AssetTable/> */}
             <AssetSummary />
             <AssetChart />
             <AssetMarkets />
