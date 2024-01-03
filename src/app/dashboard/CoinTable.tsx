@@ -115,7 +115,7 @@ useEffect (() => {
           <tbody>
             {currentCoins.map((coin, index) => {
               return (
-               <CoinRow coin = {coin}/>
+               <CoinRow key = {coin.code} coin = {coin}/>
               )
             })}
           </tbody>
