@@ -21,3 +21,12 @@ export interface ICoinData{
     setCurrentPage: Dispatch<SetStateAction<number>>;
     currentPage: number;
 }
+
+export interface IAssetTopTableData{
+    hour: number;
+    day: number;
+    week: number;
+    month: number;
+    quarter: number;
+    year:number;
+};

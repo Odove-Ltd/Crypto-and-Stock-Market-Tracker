@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios, {AxiosResponse} from 'axios';
 import { ICoinData } from "../types/coin.data.type";
 import { coinDataContext } from "../context/coin-data.context";
 import { Pagination } from "./Pagination";
@@ -23,7 +23,7 @@ const CoinsTable: React.FC = () => {
 useEffect (() => {
   const fetchData = async () => {
     try{
-      const response = await axios.post("https://api.livecoinwatch.com/coins/list",
+      const response: AxiosResponse = await axios.post("https://api.livecoinwatch.com/coins/list",
       {
         currency: "USD",
         sort: "rank",
@@ -132,6 +132,7 @@ useEffect (() => {
         setCurrentPage = {setCurrentPage} 
         currentPage = {currentPage}
         />
+        <p>Showing {firstPostIndex + 1} - {lastPostIndex} out of {coinData.length}</p>
       </div>
     </coinDataContext.Provider>
   );
