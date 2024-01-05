@@ -30,3 +30,10 @@ export interface IAssetTopTableData{
     quarter: number;
     year:number;
 };
+
+export interface ICoinHistoryData{
+  date: number;
+  rate: number;
+  volume: number;
+  cap: number;
+};

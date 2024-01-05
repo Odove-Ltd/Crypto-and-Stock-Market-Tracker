@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import TopBar from './top-bar/TopBar';
 import AssetSummary from './asset-summary/AssetSummary';
-import AssetChart from './AssetChart';
+import AssetChart from './AssetPriceChart';
 import AssetMarkets from './AssetMarkets';
 import AssetAbout from './AssetAbout';
 import AssetNews from './asset-news/AssetNews';
@@ -15,7 +15,7 @@ const AssetDetails: React.FC = () => {
             <TopBar />
             {/* <AssetTable/> */}
             <AssetSummary />
-            <AssetChart />
+            {/* <AssetPriceChart /> */}
             <AssetMarkets />
             <AssetAbout topBarData={seedTopBarData} assetAbout={seedAssetAbout} />
             <AssetNews topBarData = {seedTopBarData}/>
