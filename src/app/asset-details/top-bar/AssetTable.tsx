@@ -1,10 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { assetDetailsContainerClass } from "@/app/utils/styling/tempTWStyles";
-import axios from "axios";
 import { IAssetTopTableData } from "@/app/types/coin.data.type";
+import FetchAssetDetailsData from "@/app/services/assetDetailsServices";
+import { useSearchParams } from 'next/navigation';
+import axios from 'axios';
 
-const AssetTable: React.FC = () => {
+interface Prop {
+    symbol: string;
+}
+
+const AssetTable = ({symbol}: Prop) => {
 
     const [coinUSDData, setCoinUSDData] = useState<IAssetTopTableData>({
         hour: 0,
@@ -35,58 +41,50 @@ const AssetTable: React.FC = () => {
     const [maxSupply, setMaxSupply] = useState<number>();
     const [liquidity, setLiquidity] = useState<number>();
     const [allTimeHigh, setAllTimeHigh] = useState<number>();
+    const [coinName, setCoinName] = useState<string>();
+    const [coinLogo, setCoinLogo] = useState<string>();
+    const [usdPrice, setUsdPrice] = useState<number>();
+    const [btcPrice, setBtcPrice] = useState<number>();
 
-
-    const fetchAssetData = async (currency: string)=>{
-        try{
-            const response = await axios.post ("https://api.livecoinwatch.com/coins/single",{
-                currency: currency.toLocaleUpperCase(),
-                code: "ETH",
-                meta: true,
-            },{
-                headers:{
-                    "content-type": "application/json",
-                    "x-api-key": "3a724224-1dad-4ae5-923d-166be3c7f62e",
-                }
-            })
-            const responseData = response.data
-            console.log(responseData)
-
-            switch(currency.toLocaleUpperCase()){
-                case "USD":
-                    setCoinUSDData(responseData.delta)
-                    break;
-                case "BTC":
-                    setCoinBTCData(responseData.delta)
-                    break;
-                case "ETH":
-                    setCoinETHDData(responseData.delta)
-                    break;
-            }
-
-            setCirculatingSupply(responseData.circulatingSupply);
-            setTotalSupply(responseData.totalSupply);
-            setMaxSupply(responseData.maxSupply);
-            setLiquidity(responseData.liquidity);
-            setAllTimeHigh(responseData.allTimeHighUSD);
-
-        }
-        catch(error){
-            console.log(error);
-        }
-    };
 
     useEffect(()=>{
-        fetchAssetData("USD");
-        fetchAssetData("BTC");
-        fetchAssetData("ETH");
-    }, [])
-  
+        const fetchData = async () =>{
+            const usdData = await FetchAssetDetailsData("USD", symbol);
+            setCirculatingSupply(usdData.circulatingSupply);
+            setTotalSupply(usdData.totalSupply);
+            setMaxSupply(usdData.maxSupply);
+            setLiquidity(usdData.liquidity);
+            setAllTimeHigh(usdData.allTimeHighUSD);
+            setCoinUSDData(usdData.delta)
+            setCoinName(usdData.name.toUpperCase());
+            setCoinLogo (usdData.webp32);
+            setUsdPrice(usdData.rate.toFixed(2));
 
+            const btcData = await FetchAssetDetailsData("BTC",  symbol);
+            setCoinBTCData(btcData.delta)
+            setBtcPrice(btcData.rate.toFixed(8));
+
+            const ethData = await FetchAssetDetailsData("ETH",  symbol);
+            setCoinETHDData(ethData.delta)
+            console.log(ethData)
+        };
+        fetchData();
+}, [])
 
     return (
         <div>
-          <hr className="my-4 border-gray-800 w-full" />
+            <div className="flex">
+                <img src={coinLogo} />
+                <span className="text-lg flex flex-col ml-2 text-black">
+                    <span>{coinName}</span>
+                    <span className="text-sm text-gray-500">{symbol}</span>
+                </span>
+                <span className="text-lg flex flex-col ml-2 c-grey text-black">
+                    <span>${usdPrice}</span>
+                    <span className="text-sm text-gray-500">{btcPrice}BTC</span>
+                </span>
+            </div>
+          {/* <hr className="my-4 border-gray-800 w-full" /> */}
           <table className="border-none text-black text-center table-fixed w-full">
             <thead>
               <tr>

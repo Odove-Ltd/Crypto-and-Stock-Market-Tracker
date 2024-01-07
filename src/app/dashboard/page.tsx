@@ -4,9 +4,7 @@ import Overview from "./Overview";
 import BiggestGainers from "./BiggestGainers";
 import RecentlyAdded from "./RecentlyAdded";
 import TopText from "./TopText";
-import CoinsTable from "./coins-table";
-
-
+import CoinsTable from "./CoinTable";
 
 const Dashboard: React.FC = () => {
   return (
