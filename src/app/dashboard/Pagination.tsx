@@ -1,6 +1,6 @@
 import { IPaginationProps } from "../types/coin.data.type";
 
-export const Pagination: React.FC <IPaginationProps> = ({totalPosts,coinPerPage, setCurrentPage, currentPage}) =>{
+export const Pagination: React.FC <IPaginationProps> = ({totalPosts, coinPerPage, setCurrentPage, currentPage}) =>{
     const pages: number[] = [];
     for (let i = 1; i<= Math.ceil(totalPosts/coinPerPage); i++)
     pages.push(i);

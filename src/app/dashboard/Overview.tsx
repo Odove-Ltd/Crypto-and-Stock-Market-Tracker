@@ -1,5 +1,4 @@
 'use client'
-
 import { useState, useEffect } from 'react';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 import { BiSolidUpArrow } from 'react-icons/bi';

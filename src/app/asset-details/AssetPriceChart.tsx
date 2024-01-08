@@ -1,8 +1,11 @@
+'use client'
 import React, {useEffect, useState} from 'react';
-import coinHistoryData from '../services/coinHistoryService';
+import { coinHistoryData } from '../services/coinHistoryService';
+import { formatTime } from '../services/coinHistoryService';
 import { assetDetailsContainerClass } from '@/app/utils/styling/tempTWStyles';
 import { ICoinHistoryData } from '../types/coin.data.type';
-import { Line } from 'react-chartjs-2';
+import { Line} from 'react-chartjs-2';
+import 'chart.js/auto'
 
 
 interface Prop {
@@ -11,45 +14,62 @@ interface Prop {
 
 const AssetPriceChart: React.FC<Prop> = ({symbol}) => {
 
-    const now = Date.now()
-    const startTimestamp = now - (7 * 24 * 60 * 60 * 1000);
+    const [days, setDays] = useState<number>(1);
+    const [chartData, setChart] = useState<ICoinHistoryData[]>([]);
 
-    const [startTime, setStartTime] = useState<number>();
-    const [data, setData] = useState<ICoinHistoryData[]>([]);
+    const now = Date.now()
+    const startTimestamp = now - (days * 24 * 60 * 60 * 1000);
 
     useEffect(()=>{
         const fetchData = async () =>{
             const historyData = await coinHistoryData("USD", symbol, startTimestamp, now );
-            setData(historyData.history)
-        }
+            setChart(historyData.history)
+        }; fetchData(); 
     }, [])
-    const options = {
-        scales: {
-          x: {
-            type: 'linear',
-            position: 'bottom',
-          },
-        },
-        plugins: {
-          tooltip: {
-            callbacks: {
-              label: (context: any) => {
-                const label = context.dataset.label || '';
-                const value = context.parsed.y;
-                return `${label}: $${value}`;
-              },
+
+    const data = {
+        labels: chartData.map((item)=>formatTime(item.date)),
+        datasets:[
+            {
+                label: "Price",
+                data: chartData.map((item)=>item.rate),
+                borderColor: 'blue',
+                backgroundColor: 'rgba(0, 0, 255, 0.2)',
             },
-          },
+        ],
+    };
+
+  const options = {
+    tooltips: {
+      mode: 'nearest',
+      intersect: false,
+    },
+    hover: {
+      mode: 'nearest' as 'nearest',
+      intersect: false,
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
         },
-      };
-    
+      },
+    },
+    elements: {
+      point: {
+        radius: 0,
+      },
+    },
+    legend: {
+      display: false,
+    },
+  };
 
-    return (
-        <div className={`${assetDetailsContainerClass}`}>
-            <Line data ={data} options={options}/>
-            
+    return(
+        <div className='w-3/4 mx-auto'>
+            <Line data = {data}  options={options}/>
         </div>
-    );
-};
-
+    )
+    
+}
 export default AssetPriceChart;

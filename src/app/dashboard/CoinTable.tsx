@@ -2,12 +2,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios, {AxiosResponse} from 'axios';
-import Link from "next/link";
 import { ICoinData } from "../types/coin.data.type";
 import { coinDataContext } from "../context/coin-data.context";
 import { Pagination } from "./Pagination";
-import AssetTable from "../asset-details/top-bar/AssetTable";
-import {BsStarFill, BsStar} from 'react-icons/bs';
 import CoinRow from "./CoinRow";
 
 const CoinsTable: React.FC = () => {
@@ -23,12 +20,6 @@ const CoinsTable: React.FC = () => {
   const lastPostIndex: number = currentPage * coinPerPage;
   const firstPostIndex: number = lastPostIndex - coinPerPage;
   const currentCoins: ICoinData[] = coinData.slice(firstPostIndex, lastPostIndex);
-
-  const [isFavourite, setIsFavourite] = useState<boolean>(false);
-
-  const handleFavouriteToggle = () =>{
-    setIsFavourite((prev)=>!prev);
-  };
 
 useEffect (() => {
   const fetchData = async () => {

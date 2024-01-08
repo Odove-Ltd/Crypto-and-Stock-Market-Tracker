@@ -31,6 +31,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@types/chart.js": "^2.9.41",
     "@vercel/next": "^4.0.14"
   }
 }
