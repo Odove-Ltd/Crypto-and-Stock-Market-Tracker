@@ -8,7 +8,7 @@ const TopText: React.FC = () => {
   const [marketCapLast24Hrs, setMarketCapLast24Hrs] = useState<number>(0);
 
   const now: number = new Date().getTime()
-  const twentyFourHoursAgo: number = now - 24 * 60 * 60 * 100
+  const twentyFourHoursAgo: number = now - 24 * 60 * 60 * 1000
   
   useEffect(()=>{
     const fetchData = async ()=>{
@@ -27,8 +27,7 @@ const TopText: React.FC = () => {
         );
 
         const data = response.data
-        console.log(data)
-        console.log('see it or not')
+        console.log("Here",data)
         setMarketCapLast24Hrs(data[0].cap)
       }
       catch(error){

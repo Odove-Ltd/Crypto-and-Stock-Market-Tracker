@@ -3,8 +3,6 @@ import React, { use, useEffect, useState } from "react";
 import { assetDetailsContainerClass } from "@/app/utils/styling/tempTWStyles";
 import { IAssetTopTableData } from "@/app/types/coin.data.type";
 import FetchAssetDetailsData from "@/app/services/assetDetailsServices";
-import { useSearchParams } from 'next/navigation';
-import axios from 'axios';
 
 interface Prop {
     symbol: string;
