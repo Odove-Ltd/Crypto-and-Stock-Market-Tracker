@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
 const FetchAssetDetailsData = async (currency: string, code: string)=>{
     try{
         const response = await axios.post ("https://api.livecoinwatch.com/coins/single",{
@@ -9,7 +11,7 @@ const FetchAssetDetailsData = async (currency: string, code: string)=>{
         },{
             headers:{
                 "content-type": "application/json",
-                "x-api-key": "3a724224-1dad-4ae5-923d-166be3c7f62e",
+                "x-api-key": apiKey,
             }
         })
         const responseData = response.data

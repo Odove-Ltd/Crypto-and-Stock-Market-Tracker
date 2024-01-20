@@ -4,6 +4,8 @@ import {useEffect, useState} from 'react';
 
 const TopText: React.FC = () => {
 
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
   const [marketCap, setMarketCap] = useState<number>(0);
   const [marketCapLast24Hrs, setMarketCapLast24Hrs] = useState<number>(0);
 
@@ -21,7 +23,7 @@ const TopText: React.FC = () => {
         {
           headers:{
             "content-type": "application/json",
-            "x-api-key": "3a724224-1dad-4ae5-923d-166be3c7f62e",
+            "x-api-key": apiKey,
           }
         }
         );
@@ -95,7 +97,7 @@ const TopText: React.FC = () => {
           The global crypto market cap is ${formatMarketCap(marketCap)}, a {' '} 
           <span className={`text-${percentageChange > 0 ? 'green': 'red'}-700`}>{Math.abs(percentageChange)}%</span>
           {' '}{percentageChange > 0 ? 'increase' : 'decrease'}
-          {' '} over the 24 hours.
+          {' '} over the last 24 hours.
         </h3>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { IPaginationProps } from "../types/coin.data.type";
+import { IPaginationProps } from "../models/coin.data.type";
 
 export const Pagination: React.FC <IPaginationProps> = ({totalPosts, coinPerPage, setCurrentPage, currentPage}) =>{
     const pages: number[] = [];

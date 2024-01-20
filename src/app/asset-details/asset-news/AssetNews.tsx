@@ -3,7 +3,7 @@
 import React, {useEffect, useState} from 'react';
 import { assetDetailsContainerClass } from '@/app/utils/styling/tempTWStyles';
 import { TopBarDataType } from '@/app/utils/seed-data/seed-asset-details';
-import { INews } from '@/app/types/news.type';
+import { INews } from '@/app/models/news.type';
 import { newsData } from '@/app/utils/seed-data/seed-news';
 
 interface Props{
