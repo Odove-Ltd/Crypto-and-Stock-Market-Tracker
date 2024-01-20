@@ -2,10 +2,11 @@
 import { useState, useEffect } from 'react';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 import { BiSolidUpArrow } from 'react-icons/bi';
-import { IOverview } from '../types/overview.type';
+import { IOverview } from '../models/overview.type';
 import axios, {AxiosResponse} from 'axios';
 
 const Overview: React.FC = () => {
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
   const [overviewData, setOverviewData] = useState<IOverview>({
     marketCap: 0,
@@ -21,7 +22,7 @@ const Overview: React.FC = () => {
         currency: "USD"},{
           headers:{
             "content-type": "application/json",
-            "x-api-key": "3a724224-1dad-4ae5-923d-166be3c7f62e",
+            "x-api-key": apiKey,
           }
         });
         

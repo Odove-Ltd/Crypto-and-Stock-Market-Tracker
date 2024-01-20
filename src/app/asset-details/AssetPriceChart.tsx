@@ -1,9 +1,9 @@
 'use client'
 import React, {useEffect, useState} from 'react';
-import { coinHistoryData } from '../services/coinHistoryService';
-import { formatTime } from '../services/coinHistoryService';
+import { coinHistoryData } from '../services/dashboard/coinHistoryService';
+import { formatTime } from '../services/dashboard/coinHistoryService';
 import { assetDetailsContainerClass } from '@/app/utils/styling/tempTWStyles';
-import { ICoinHistoryData } from '../types/coin.data.type';
+import { ICoinHistoryData } from '../models/coin.data.type';
 import { Line} from 'react-chartjs-2';
 import 'chart.js/auto'
 

@@ -2,12 +2,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios, {AxiosResponse} from 'axios';
-import { ICoinData } from "../types/coin.data.type";
+import { ICoinData } from "../models/coin.data.type";
 import { coinDataContext } from "../context/coin-data.context";
 import { Pagination } from "./Pagination";
 import CoinRow from "./CoinRow";
+import { getCoinTableData } from "../services/dashboard/coinsTableService";
 
 const CoinsTable: React.FC = () => {
+
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
   const now = Date.now()
   const startTimestamp = now - (7 * 24 * 60 * 60 * 1000);
@@ -15,12 +18,20 @@ const CoinsTable: React.FC = () => {
   const [coinData, setCoinData] = useState<ICoinData[]>([]);
   const [last7days, setLast7days] =  useState({});
 
-  const [currentPage, setCurrentPage] = useState<number>(2);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [coinPerPage, setCoinPerPage] = useState<number>(50)
   const lastPostIndex: number = currentPage * coinPerPage;
   const firstPostIndex: number = lastPostIndex - coinPerPage;
   const currentCoins: ICoinData[] = coinData.slice(firstPostIndex, lastPostIndex);
 
+ useEffect(()=>{
+    const fetchData = async ()=>{
+      const coinData = await getCoinTableData();
+      console.log(`Looking for ${coinData.data}`)
+    };
+    fetchData();
+  }, [])
+  
 useEffect (() => {
   const fetchData = async () => {
     try{
@@ -35,13 +46,11 @@ useEffect (() => {
       },{
         headers:{
           "content-type": "application/json",
-          "x-api-key": "3a724224-1dad-4ae5-923d-166be3c7f62e",
+          "x-api-key": apiKey,
         },
       }
       );
       const data = response.data;
-      console.log('coindata')
-      console.log(data)
       setCoinData(data)
       console.log(data[0].code)
     } catch(error){
@@ -67,7 +76,7 @@ useEffect (() => {
       },{
         headers:{
           "content-type": "application/json",
-          "x-api-key": "3a724224-1dad-4ae5-923d-166be3c7f62e",
+          "x-api-key": apiKey,
         },
       }
       );

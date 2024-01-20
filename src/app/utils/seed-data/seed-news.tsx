@@ -1,4 +1,4 @@
-import { INews } from "@/app/types/news.type";
+import { INews } from "@/app/models/news.type";
 
 export const newsData:INews[] = [
     {

@@ -22,11 +22,6 @@ const NavBar: React.FC<Props> = (props) => {
                 </a>
                 <a
                 className={buttonClass1}
-                href="/asset-details">
-                    Asset Details
-                </a>
-                <a
-                className={buttonClass1}
                 href="/dashboard">
                     Exchanges
                 </a>

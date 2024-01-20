@@ -1,8 +1,8 @@
 "use client";
 import React, { use, useEffect, useState } from "react";
 import { assetDetailsContainerClass } from "@/app/utils/styling/tempTWStyles";
-import { IAssetTopTableData } from "@/app/types/coin.data.type";
-import FetchAssetDetailsData from "@/app/services/assetDetailsServices";
+import { IAssetTopTableData } from "@/app/models/coin.data.type";
+import FetchAssetDetailsData from "@/app/services/assetDetails/assetDetailsServices";
 
 interface Prop {
     symbol: string;
